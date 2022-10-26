@@ -22,12 +22,17 @@ const AuthProvider = ({ children }) => {
     }
 
     /* Sign with google */
-
     const signInWithGoogle = (provider) => {
         return signInWithPopup(auth, provider)
     }
 
-    const authInfo = { createUserWithEmailPassword, ToastContainer, toast, logInWithEmailPassword, FaGoogle, FaGithub, signInWithGoogle }
+
+    /* Sign in with github */
+    const loginWithGithub = (provider) => {
+        return signInWithPopup(auth, provider)
+    }
+
+    const authInfo = { createUserWithEmailPassword, ToastContainer, toast, logInWithEmailPassword, FaGoogle, FaGithub, signInWithGoogle, loginWithGithub }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

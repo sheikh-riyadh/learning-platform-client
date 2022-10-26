@@ -1,12 +1,13 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 const googleProvider = new GoogleAuthProvider()
+const githubProvider = new GithubAuthProvider()
 
 const Login = () => {
 
-    const { logInWithEmailPassword, ToastContainer, toast, FaGithub, FaGoogle, signInWithGoogle } = useContext(AuthContext)
+    const { logInWithEmailPassword, ToastContainer, toast, FaGithub, FaGoogle, signInWithGoogle, loginWithGithub } = useContext(AuthContext)
     const handleOnSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -39,7 +40,13 @@ const Login = () => {
     }
 
     const handleSignInWithGithub = () => {
-
+        loginWithGithub(githubProvider)
+            .then(response => {
+                const user = response.user;
+                console.log(user);
+            }).catch(error => {
+                console.error(error)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200 ">
