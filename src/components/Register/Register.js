@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
-    const { signInWithEmailAndPassword, toast, ToastContainer } = useContext(AuthContext)
+    const { createUserWithEmailPassword, toast, ToastContainer } = useContext(AuthContext)
 
     const handleOnSubmit = (event) => {
         event.preventDefault()
@@ -12,11 +12,11 @@ const Register = () => {
         const name = form.name.value;
         console.log(email, password, name)
 
-        signInWithEmailAndPassword(email, password)
+        createUserWithEmailPassword(email, password)
             .then(response => {
                 const user = response.user;
                 console.log(user)
-                toast("Login succesfull", { position: "top-center" })
+                toast("user created succesfully", { position: "top-center" })
                 form.reset()
             }).catch(error => {
 

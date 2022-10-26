@@ -1,12 +1,28 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
+
+    const { logInWithEmailPassword, ToastContainer, toast } = useContext(AuthContext)
     const handleOnSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value
         const password = form.password.value;
         console.log(email, password)
+
+        logInWithEmailPassword(email, password)
+            .then(response => {
+                toast("Login succesfull", { position: "top-center" })
+                form.reset()
+            }).catch(error => {
+                if (error.message === "Firebase: Error (auth/wrong-password).") {
+                    toast("Wrong password", { position: "top-center" })
+                    form.reset()
+                }
+                console.error(error)
+            })
     }
     return (
         <div className="hero min-h-screen bg-base-200 ">
@@ -39,6 +55,7 @@ const Login = () => {
                     </div>
                 </form>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
