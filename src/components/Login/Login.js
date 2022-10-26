@@ -1,10 +1,12 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
+const googleProvider = new GoogleAuthProvider()
 
 const Login = () => {
 
-    const { logInWithEmailPassword, ToastContainer, toast } = useContext(AuthContext)
+    const { logInWithEmailPassword, ToastContainer, toast, FaGithub, FaGoogle, signInWithGoogle } = useContext(AuthContext)
     const handleOnSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -24,11 +26,30 @@ const Login = () => {
                 console.error(error)
             })
     }
+
+
+    const handleSignInWithGoole = () => {
+        signInWithGoogle(googleProvider)
+            .then(response => {
+                const user = response.user;
+                console.log(user);
+            }).catch(error => {
+                console.error(error);
+            })
+    }
+
+    const handleSignInWithGithub = () => {
+
+    }
     return (
         <div className="hero min-h-screen bg-base-200 ">
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Login now!</h1>
+                </div>
+                <div className='flex gap-2 flex-col lg:flex-row items-center'>
+                    <FaGoogle /><span onClick={handleSignInWithGoole} className='cursor-pointer'>continue with google</span>
+                    <FaGithub /><span onClick={handleSignInWithGithub} className='cursor-pointer'>continue with github</span>
                 </div>
                 <form onSubmit={handleOnSubmit} className="card flex-shrink-0 lg:w-[630px] max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">

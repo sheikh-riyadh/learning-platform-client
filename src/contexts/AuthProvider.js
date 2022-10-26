@@ -1,7 +1,8 @@
 import React, { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import app from '../firebase/firebase.config';
 import { ToastContainer, toast } from 'react-toastify';
+import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 
 export const AuthContext = createContext()
@@ -15,12 +16,18 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, passowrd)
     }
 
-    /* sign in with email and password */
+    /* login with email and password */
     const logInWithEmailPassword = (email, passowrd) => {
         return signInWithEmailAndPassword(auth, email, passowrd)
     }
 
-    const authInfo = { createUserWithEmailPassword, ToastContainer, toast, logInWithEmailPassword }
+    /* Sign with google */
+
+    const signInWithGoogle = (provider) => {
+        return signInWithPopup(auth, provider)
+    }
+
+    const authInfo = { createUserWithEmailPassword, ToastContainer, toast, logInWithEmailPassword, FaGoogle, FaGithub, signInWithGoogle }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

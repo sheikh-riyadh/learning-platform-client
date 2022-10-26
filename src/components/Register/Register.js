@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
-    const { createUserWithEmailPassword, toast, ToastContainer } = useContext(AuthContext)
+    const { createUserWithEmailPassword, toast, ToastContainer, FaGoogle, FaGithub } = useContext(AuthContext)
 
     const handleOnSubmit = (event) => {
         event.preventDefault()
@@ -33,6 +33,10 @@ const Register = () => {
             <div className="hero-content flex-col">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold">Register now</h1>
+                </div>
+                <div className='flex gap-2 flex-col lg:flex-row items-center'>
+                    <FaGoogle /><span className='cursor-pointer'>continue with google</span>
+                    <FaGithub /><span className='cursor-pointer'>continue with github</span>
                 </div>
                 <form onSubmit={handleOnSubmit} className="card flex-shrink-0 lg:w-[630px] max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
