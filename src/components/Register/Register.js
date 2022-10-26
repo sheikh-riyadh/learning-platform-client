@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Register = () => {
+    const { signInWithEmailAndPassword, toast, ToastContainer } = useContext(AuthContext)
+
     const handleOnSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
@@ -8,6 +11,22 @@ const Register = () => {
         const password = form.password.value;
         const name = form.name.value;
         console.log(email, password, name)
+
+        signInWithEmailAndPassword(email, password)
+            .then(response => {
+                const user = response.user;
+                console.log(user)
+                toast("Login succesfull", { position: "top-center" })
+                form.reset()
+            }).catch(error => {
+
+                if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+                    toast("User already exisit", { position: "top-center" });
+                    form.reset()
+                }
+                console.log(error)
+            })
+
     }
     return (
         <div className="hero min-h-screen bg-base-200 ">
@@ -46,6 +65,7 @@ const Register = () => {
                     </div>
                 </form>
             </div>
+            <ToastContainer></ToastContainer>
         </div>
     );
 };
