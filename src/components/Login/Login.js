@@ -1,6 +1,7 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
@@ -22,6 +23,9 @@ const Login = () => {
             }).catch(error => {
                 if (error.message === "Firebase: Error (auth/wrong-password).") {
                     toast("Wrong password", { position: "top-center" })
+                    form.reset()
+                } else if (error.message === "Firebase: Error (auth/user-not-found).") {
+                    toast("User not found", { position: "top-center" })
                     form.reset()
                 }
                 console.error(error)
@@ -73,7 +77,7 @@ const Login = () => {
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <span>New here?
-                                    <a href="/" className="link link-hover ml-2">Register</a>
+                                    <Link to="/register" className="link link-hover ml-2">Register</Link>
                                 </span>
                             </label>
                         </div>

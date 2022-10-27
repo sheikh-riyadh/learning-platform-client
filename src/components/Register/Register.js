@@ -1,5 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
@@ -84,7 +85,7 @@ const Register = () => {
                             <input type="password" name='password' placeholder="password" className="input input-bordered" />
                             <label className="label">
                                 <span>Already have an account?
-                                    <a href="/" className="link link-hover ml-2">Login</a>
+                                    <Link to="/login" className="link link-hover ml-2">Login</Link>
                                 </span>
                             </label>
                         </div>

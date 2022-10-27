@@ -1,14 +1,14 @@
 import './App.css';
-import Login from './components/Login/Login';
-import Register from './components/Register/Register';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/routers';
 
 function App() {
   return (
-    <div className="App">
-      <Login></Login>
-      <Register></Register>
-    </div>
+    <RouterProvider router={router}>
+
+    </RouterProvider>
   );
 }
 
