@@ -10,12 +10,12 @@ const Learn = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-9'>
                     <div>
                         <button className="outline outline-2 outline-primary p-4  outline-offset-2 rounded-2xl text-white font-bold flex items-center gap-3 w-full text-xl">
-                            <FaApple className='text-5xl'></FaApple>
+                            <FaApple className='text-4xl'></FaApple>
                             Get in apple store</button>
                     </div>
                     <div>
                         <button className="outline outline-2 outline-primary p-4  outline-offset-2 rounded-2xl text-white font-bold flex items-center gap-3 w-full text-xl">
-                            <FaGooglePlay className='text-5xl'></FaGooglePlay>
+                            <FaGooglePlay className='text-4xl'></FaGooglePlay>
                             Get in play store</button>
                     </div>
                 </div>

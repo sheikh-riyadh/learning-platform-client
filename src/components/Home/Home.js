@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Brands from '../../brands/Brands/Brands';
 import FeatureCourse from '../FeatureCourse/FeatureCourse';
 import Instructor from '../Instructor/Instructor';
@@ -12,7 +13,9 @@ const Home = () => {
                 <div>
                     <h1 className='text-3xl lg:text-5xl font-extrabold'>Master the Skills to Drive your Career</h1>
                     <p className='mt-3 lg:mt-10 text-xl'>Free online courses from the world’s leading experts. Join 17 million learners today</p>
-                    <button className="btn btn-primary mt-7">Let's get started</button>
+                    <Link to='/courses'>
+                        <button className="btn btn-primary mt-7">Let's get started</button>
+                    </Link>
                 </div>
                 <div className='mt-5'>
                     <img src="hero-edu.png" alt="HeroImage" />
@@ -30,7 +33,7 @@ const Home = () => {
                 <div className='text-center'>
                     <h1 className='text-3xl lg:text-5xl text-start font-semibold'>Featured course</h1>
                 </div>
-                <div className='mt-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-5'>
+                <div className='mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5'>
                     <FeatureCourse
                         courseTitle="UI/UX design"
                         image="ui-ux.jpg"
@@ -53,7 +56,7 @@ const Home = () => {
                 </div>
                 <div className='mt-16'>
                     <h2 className='text-3xl lg:text-5xl text-start font-semibold'>Learn from the best instructors</h2>
-                    <div className='mt-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-5'>
+                    <div className='mt-10 grid grid-cols-1 lg:grid-cols-4 gap-5'>
                         <Instructor
                             image="instructors/instructor-1.jpeg"
                             name="Albert Flores"

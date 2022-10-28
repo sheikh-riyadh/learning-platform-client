@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { FaGraduationCap, FaUserCircle } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext)
+
+
+    const handleLogOut = () => {
+        logOut()
+    }
     return (
         <div className="navbar uppercase bg-slate-200 text-gray-900 font-semibold">
             <div className="navbar lg:mx-16">
@@ -24,12 +32,34 @@ const Header = () => {
                             <li>
                                 <NavLink className="ml-5" to='/blogs'>Blog</NavLink>
                             </li>
-                            <li>
-                                <NavLink className="ml-5" to='/register'>Register</NavLink>
-                            </li>
-                            <li>
-                                <NavLink className="ml-5" to='/login'>Login</NavLink>
-                            </li>
+                            {
+                                user?.uid ? undefined
+                                    :
+                                    <><li>
+                                        <NavLink className="ml-5" to='/register'>Register</NavLink>
+                                    </li>
+                                        <li>
+                                            <NavLink className="ml-5" to='/login'>Login</NavLink>
+                                        </li></>
+                            }
+                            {
+                                user?.uid && <><li>
+                                    <button onClick={handleLogOut} className='uppercase ml-5'>Log out</button>
+                                </li></>
+                            }
+                            {
+                                user?.uid && <p>{user.displayName}</p>
+                            }
+                            <div className="form-control">
+                                <label className="label cursor-pointer">
+                                    <input type="checkbox" className="toggle toggle-primary" />
+                                </label>
+                            </div>
+                            <div>
+                                {
+                                    user?.uid ? <img className='w-10 h-10 rounded-full' src={user?.photoURL} alt="userImage" /> : <FaUserCircle className='text-2xl' />
+                                }
+                            </div>
                         </ul>
                     </div>
                     <div className='flex items-center'>
@@ -53,26 +83,40 @@ const Header = () => {
                         <li>
                             <NavLink className="ml-5" to='/blogs'>Blog</NavLink>
                         </li>
-                        <li>
-                            <NavLink className="ml-5" to='/register'>Register</NavLink>
-                        </li>
-                        <li>
-                            <NavLink className="ml-5" to='/login'>Login</NavLink>
-                        </li>
+                        {
+                            user?.uid ? undefined
+                                :
+                                <><li>
+                                    <NavLink className="ml-5" to='/register'>Register</NavLink>
+                                </li>
+                                    <li>
+                                        <NavLink className="ml-5" to='/login'>Login</NavLink>
+                                    </li></>
+                        }
+                        {
+                            user?.uid && <><li>
+                                <button onClick={handleLogOut} className='uppercase ml-5'>Log out</button>
+                            </li></>
+                        }
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    {
+                        user?.uid && <p className='hidden lg:block'>{user.displayName}</p>
+                    }
                     <div className="form-control">
                         <label className="label cursor-pointer">
                             <input type="checkbox" className="toggle toggle-primary" />
                         </label>
                     </div>
                     <div>
-                        <FaUserCircle className='text-2xl' />
+                        {
+                            user?.uid ? <img className='w-10 h-10 rounded-full hidden lg:block' src={user?.photoURL} alt="userImage" /> : <FaUserCircle className='text-2xl' />
+                        }
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

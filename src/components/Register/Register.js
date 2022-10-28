@@ -1,6 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
@@ -8,35 +8,33 @@ const githubProvider = new GithubAuthProvider()
 const Register = () => {
     const { createUserWithEmailPassword, toast, ToastContainer, FaGoogle, FaGithub, loginWithGithub, signInWithGoogle } = useContext(AuthContext)
 
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
+
     const handleOnSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value
         const password = form.password.value;
-        const name = form.name.value;
-        console.log(email, password, name)
 
         createUserWithEmailPassword(email, password)
             .then(response => {
-                const user = response.user;
-                console.log(user)
                 toast("user created succesfully", { position: "top-center" })
                 form.reset()
             }).catch(error => {
-
                 if (error.message === "Firebase: Error (auth/email-already-in-use).") {
                     toast("User already exisit", { position: "top-center" });
                     form.reset()
                 }
-                console.log(error)
             })
     }
 
     const handleSignInWithGoole = () => {
         signInWithGoogle(googleProvider)
             .then(response => {
-                const user = response.user;
-                console.log(user);
+                navigate(from, { replace: true });
             }).catch(error => {
                 console.error(error);
             })
@@ -45,8 +43,7 @@ const Register = () => {
     const handleSignInWithGithub = () => {
         loginWithGithub(githubProvider)
             .then(response => {
-                const user = response.user;
-                console.log(user);
+                navigate(from, { replace: true });
             }).catch(error => {
                 console.error(error)
             })

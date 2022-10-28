@@ -1,7 +1,7 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
@@ -9,16 +9,23 @@ const githubProvider = new GithubAuthProvider()
 const Login = () => {
 
     const { logInWithEmailPassword, ToastContainer, toast, FaGithub, FaGoogle, signInWithGoogle, loginWithGithub } = useContext(AuthContext)
+
+
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/";
+
+
+
     const handleOnSubmit = (event) => {
         event.preventDefault()
         const form = event.target;
         const email = form.email.value
         const password = form.password.value;
-        console.log(email, password)
-
         logInWithEmailPassword(email, password)
             .then(response => {
                 toast("Login succesfull", { position: "top-center" })
+                navigate(from, { replace: true });
                 form.reset()
             }).catch(error => {
                 if (error.message === "Firebase: Error (auth/wrong-password).") {
@@ -31,13 +38,10 @@ const Login = () => {
                 console.error(error)
             })
     }
-
-
     const handleSignInWithGoole = () => {
         signInWithGoogle(googleProvider)
             .then(response => {
-                const user = response.user;
-                console.log(user);
+                navigate(from, { replace: true });
             }).catch(error => {
                 console.error(error);
             })
@@ -46,8 +50,7 @@ const Login = () => {
     const handleSignInWithGithub = () => {
         loginWithGithub(githubProvider)
             .then(response => {
-                const user = response.user;
-                console.log(user);
+                navigate(from, { replace: true });
             }).catch(error => {
                 console.error(error)
             })

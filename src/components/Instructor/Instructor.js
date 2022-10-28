@@ -10,7 +10,7 @@ const Instructor = ({ image, course, name, star, totalCourse, students }) => {
                     <h2 className="card-title">{name}</h2>
                     <p>{course}</p>
 
-                    <div className='flex gap-5'>
+                    <div className='flex gap-2'>
                         <div className='flex items-center'>
                             <FaStar className='text-yellow-600'></FaStar><strong>{star}</strong>
                         </div>

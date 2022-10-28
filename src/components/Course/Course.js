@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const Course = ({ course }) => {
 
     const { courseTitle, courseDuration, coursePhotoUrl, coursePrice, id } = course
-    console.log(course)
     return (
         <div className='shadow-xl rounded-xl bg-slate-200 text-slate-800'>
             <img className='rounded-xl w-full' src={coursePhotoUrl} alt="courseImage" />

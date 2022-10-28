@@ -4,7 +4,6 @@ import { Link, useLoaderData } from 'react-router-dom';
 const AddToCart = () => {
 
     const cart = useLoaderData()
-    console.log(cart)
     const { price, photoUrl, courseName } = cart
     return (
         <div className='lg:w-5/12 m-auto my-16'>
