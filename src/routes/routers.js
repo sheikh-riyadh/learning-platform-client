@@ -1,10 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
+import AddToCart from "../components/AddToCart/AddToCart";
 import Blogs from "../components/Blogs/Blogs";
+import CourseDetails from "../components/CourseDetails/CourseDetails";
+import Courses from "../components/Courses/Courses";
 import Faq from "../components/Faq/Faq";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
-import CourseLayout from "../layout/CourseLayout";
 import Main from "../layout/Main";
 
 export const router = createBrowserRouter([
@@ -32,12 +34,18 @@ export const router = createBrowserRouter([
                 element: <Blogs></Blogs>
             }, {
                 path: '/courses',
-                element: <CourseLayout></CourseLayout>,
-                children: [
-                    {
+                element: <Courses></Courses>,
+                loader: () => fetch('http://localhost:5000/courses')
+            },
+            {
+                path: '/details/:id',
+                element: <CourseDetails></CourseDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
 
-                    }
-                ]
+            }, {
+                path: '/add-to-cart/:id',
+                element: <AddToCart></AddToCart>,
+                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
             }
         ]
     }

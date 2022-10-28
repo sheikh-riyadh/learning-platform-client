@@ -1,7 +1,6 @@
 import React from 'react';
 import Brands from '../../brands/Brands/Brands';
 import FeatureCourse from '../FeatureCourse/FeatureCourse';
-import Footer from '../Footer/Footer';
 import Instructor from '../Instructor/Instructor';
 import Learn from '../Learn/Learn';
 import NewsLetter from '../NewsLetter/NewsLetter';
@@ -31,7 +30,7 @@ const Home = () => {
                 <div className='text-center'>
                     <h1 className='text-3xl lg:text-5xl text-start font-semibold'>Featured course</h1>
                 </div>
-                <div className='mt-10 grid grid-cols- lg:grid-cols-4 gap-5'>
+                <div className='mt-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-5'>
                     <FeatureCourse
                         courseTitle="UI/UX design"
                         image="ui-ux.jpg"
@@ -54,7 +53,7 @@ const Home = () => {
                 </div>
                 <div className='mt-16'>
                     <h2 className='text-3xl lg:text-5xl text-start font-semibold'>Learn from the best instructors</h2>
-                    <div className='mt-10 grid grid-cols-1 lg:grid-cols-4 gap-6'>
+                    <div className='mt-10 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-5'>
                         <Instructor
                             image="instructors/instructor-1.jpeg"
                             name="Albert Flores"

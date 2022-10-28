@@ -3,7 +3,7 @@ import React from 'react';
 const FeatureCourse = ({ courseTitle, image, description }) => {
     return (
         <div className="card bg-base-100 shadow-xl">
-            <figure><img src={image} alt="CourseImage" /></figure>
+            <figure><img className='w-full' src={image} alt="CourseImage" /></figure>
             <div className="card-body bg-primary-focus">
                 <h2 className="card-title">
                     {courseTitle}
