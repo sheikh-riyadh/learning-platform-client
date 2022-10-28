@@ -6,7 +6,7 @@ const CourseList = () => {
 
     const [categoryList, setCategoryList] = useState()
     useEffect(() => {
-        fetch('https://course-server-eight.vercel.app//courses')
+        fetch('https://course-server-eight.vercel.app/courses')
             .then(res => res?.json())
             .then(data => setCategoryList(data))
     }, [])

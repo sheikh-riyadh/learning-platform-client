@@ -1,6 +1,4 @@
 import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Course from '../Course/Course';
 import CourseList from '../CourseList/CourseList';
