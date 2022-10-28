@@ -1,4 +1,6 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Course from '../Course/Course';
 import CourseList from '../CourseList/CourseList';
@@ -14,7 +16,7 @@ const Courses = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-3 gap-5'>
                     {
                         courses?.map(course => <Course
-                            key={course.id}
+                            key={course?.id}
                             course={course}
                         ></Course>)
                     }

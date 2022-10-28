@@ -37,17 +37,17 @@ export const router = createBrowserRouter([
             }, {
                 path: '/courses',
                 element: <Courses></Courses>,
-                loader: () => fetch('http://localhost:5000/courses')
+                loader: () => fetch(`https://course-server-eight.vercel.app/courses`)
             },
             {
                 path: '/details/:id',
                 element: <CourseDetails></CourseDetails>,
-                loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+                loader: ({ params }) => fetch(`https://course-server-eight.vercel.app/courses/${params.id}`)
 
             }, {
                 path: '/add-to-cart/:id',
                 element: <PrivateRoute><AddToCart></AddToCart></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+                loader: ({ params }) => fetch(`https://course-server-eight.vercel.app/details/${params.id}`)
             }, {
                 path: '*',
                 element: <Error></Error>
