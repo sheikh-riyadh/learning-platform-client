@@ -3,6 +3,7 @@ import AddToCart from "../components/AddToCart/AddToCart";
 import Blogs from "../components/Blogs/Blogs";
 import CourseDetails from "../components/CourseDetails/CourseDetails";
 import Courses from "../components/Courses/Courses";
+import Error from "../components/Error/Error";
 import Faq from "../components/Faq/Faq";
 import Home from "../components/Home/Home";
 import Login from "../components/Login/Login";
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
                 path: '/add-to-cart/:id',
                 element: <PrivateRoute><AddToCart></AddToCart></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/details/${params.id}`)
+            }, {
+                path: '*',
+                element: <Error></Error>
             }
+
         ]
     }
 ])

@@ -111,7 +111,7 @@ const Header = () => {
                     </div>
                     <div>
                         {
-                            user?.uid ? <img className='w-10 h-10 rounded-full hidden lg:block' src={user?.photoURL} alt="userImage" /> : <FaUserCircle className='text-2xl' />
+                            user?.uid ? <img className='w-10 h-10 rounded-full hidden lg:block' title={user.displayName} src={user?.photoURL} alt="userImage" /> : <FaUserCircle className='text-2xl' />
                         }
                     </div>
                 </div>

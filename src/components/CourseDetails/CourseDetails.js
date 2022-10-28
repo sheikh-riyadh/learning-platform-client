@@ -14,7 +14,7 @@ const CourseDetails = () => {
                 }
             </div>
             <div>
-                <Link to={`/add-to-cart/${id}`} className='bg-primary block p-4 rounded-xl mt-5 lg:w-3/12 m-auto text-2xl text-slate-200 font-semibold text-center'>Add to cart</Link>
+                <Link to={`/add-to-cart/${id}`} className='bg-primary block p-4 rounded-xl mt-5 lg:w-3/12 m-auto text-2xl text-slate-200 font-semibold text-center'>Get Premium access</Link>
                 <Link to='/courses' className='bg-primary block p-4 rounded-xl mt-5 lg:w-3/12 m-auto text-2xl text-slate-200 font-semibold text-center'>Back to course</Link>
             </div>
         </div>
