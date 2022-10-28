@@ -3,7 +3,7 @@ import Blog from '../Blog/Blog';
 
 const Blogs = () => {
     return (
-        <div className='text-center lg:mx-16 '>
+        <div className='text-center mx-5 lg:mx-16 lg:mb-10'>
             <Blog
                 image='cros.png'
                 title=" what is cors?"
